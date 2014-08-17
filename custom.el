@@ -8,6 +8,7 @@
 (setq backup-directory-alist `(("." . "~/.backups")))
 
 (setq ag-highlight-search t)
+(transient-mark-mode t)
 
 ;; (global-set-key "\C-w" 'backward-kill-word)
 ;; (global-set-key "\C-x\C-k" 'kill-region)
@@ -136,6 +137,6 @@
 (defun my-dirtrack-mode ()
   "Add to shell-mode-hook to use dirtrack mode in my shell buffers."
   (shell-dirtrack-mode 0)
-  (set-variable 'dirtrack-list '("^\\([^ \$]+\\) \$ " 1 nil))
+  (set-variable 'dirtrack-list '("^\\([^ \$]+\\).*\$ " 1 nil))
   (dirtrack-mode 1))
 (add-hook 'shell-mode-hook 'my-dirtrack-mode)

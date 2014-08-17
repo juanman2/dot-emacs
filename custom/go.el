@@ -27,6 +27,11 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/go-flymake")
 (require 'go-flymake)
 
+;;
+;;
+;;
+(load "$GOPATH/src/code.google.com/p/go.tools/cmd/oracle/oracle.el")
+(add-hook 'go-mode-hook 'go-oracle-mode)
 
 
 ;; ignore 'go test -c' files
@@ -89,3 +94,8 @@
 (defun go-grep-tests ()
   (car (process-lines "bash" "-c"
                       (concat "egrep -o 'func Test[^(]+' " buffer-file-name " | awk '{print $2}' | paste -sd '|'"))))
+
+;; FIXME: need to call go-oracle-set-scope
+;; (defun go-set-ora ()
+;;  (car (process-lines "bash" "-c"
+;;                      (concat "find . -name "*.go" | xargs awk '/^package/{ print $2 }' | sort -u"))))
